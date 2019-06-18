@@ -64,6 +64,12 @@ class TopicsController extends Controller
 		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
 	}
 
+    /**
+     * @param Request $request
+     * @param ImageUploadHandler $uploader
+     * @return array
+     * 上传话题图片
+     */
 	public function uploadImage(Request $request, ImageUploadHandler $uploader)
     {
         // 初始化返回数据，默认是失败的
