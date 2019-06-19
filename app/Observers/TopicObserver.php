@@ -11,11 +11,19 @@ class TopicObserver
 {
     public function creating(Topic $topic)
     {
-        $topic->excerpt = make_excerpt($topic->body);
+
     }
 
     public function updating(Topic $topic)
     {
         //
+    }
+
+    public function saving(Topic $topic)
+    {
+        //过滤xss攻击
+        $topic->body = clean($topic->body,'user_topic_body');
+        //截取摘要
+        $topic->excerpt = make_excerpt($topic->body);
     }
 }
