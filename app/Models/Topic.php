@@ -60,4 +60,14 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    /**
+     * @param array $params
+     * @return string
+     * 友好的url
+     */
+    public function link($params = [])
+    {
+        return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    }
+
 }
