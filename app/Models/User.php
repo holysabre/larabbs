@@ -77,6 +77,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
     {
         $this->notification_count = 0;
         $this->save();
-        $this->unreadNotifications()->markAsRead();
+        $this->unreadNotifications->markAsRead();
     }
 }
