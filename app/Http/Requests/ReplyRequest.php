@@ -23,7 +23,7 @@ class ReplyRequest extends Request
             default:
             {
                 return [];
-            };
+            }
         }
     }
 
