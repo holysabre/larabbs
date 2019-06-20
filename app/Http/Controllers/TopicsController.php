@@ -43,7 +43,7 @@ class TopicsController extends Controller
 		$topic->fill($request->all());
 		$topic->user_id = Auth::id();
 		$topic->save();
-		return redirect()->to($topic->link())->with('message', 'Created successfully.');
+		return redirect()->to($topic->link())->with('success', 'Created successfully.');
 	}
 
 	public function edit(Topic $topic)
@@ -58,7 +58,7 @@ class TopicsController extends Controller
 		$this->authorize('update', $topic);
 		$topic->update($request->all());
 
-		return redirect()->to($topic->link())->with('message', 'Updated successfully.');
+		return redirect()->to($topic->link())->with('success', 'Updated successfully.');
 	}
 
 	public function destroy(Topic $topic)
@@ -66,7 +66,7 @@ class TopicsController extends Controller
 		$this->authorize('destroy', $topic);
 		$topic->delete();
 
-		return redirect()->route('topics.index')->with('message', 'Deleted successfully.');
+		return redirect()->route('topics.index')->with('success', 'Deleted successfully.');
 	}
 
     /**

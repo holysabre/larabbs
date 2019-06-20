@@ -10,17 +10,12 @@ class ReplyRequest extends Request
         {
             // CREATE
             case 'POST':
-            {
-                return [
-                    // CREATE ROLES
-                ];
-            }
             // UPDATE
             case 'PUT':
             case 'PATCH':
             {
                 return [
-                    // UPDATE ROLES
+                    'content' => 'required|min:2',
                 ];
             }
             case 'GET':
@@ -36,6 +31,8 @@ class ReplyRequest extends Request
     {
         return [
             // Validation messages
+            'content.required' => '回复内容不允许为空',
+            'content.min' => '最少',
         ];
     }
 }
