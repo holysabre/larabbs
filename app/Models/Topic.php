@@ -75,4 +75,14 @@ class Topic extends Model
         return route('topics.show', array_merge([$this->id, $this->slug], $params));
     }
 
+    /**
+     * @param $reply
+     * 更新话题回复数量
+     */
+    public function updateReplyCount($reply)
+    {
+        $reply->topic->reply_count = $reply->topic->replies->count();
+        $reply->topic->save();
+    }
+
 }
