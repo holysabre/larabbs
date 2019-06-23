@@ -13,7 +13,7 @@ class ReplyObserver
 
     public function creating(Reply $reply)
     {
-        $reply->content = clean($reply->contnet, 'user_topic_body');
+        $reply->content = clean($reply->contnet, 'default');
     }
 
     public function created(Reply $reply)
