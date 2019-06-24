@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,13 +19,17 @@ class TopicsController extends Controller
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
-	public function index(TopicRequest $request, Topic $topic, User $user)
+	public function index(TopicRequest $request, Topic $topic, User $user, Link $link)
 	{
 		$topics = $topic->withOrder($request->order)->paginate(20);
 
+        // 活跃用户列表
 		$active_users = $user->getActiveUsers();
 
-		return view('topics.index', compact('topics', 'active_users'));
+        //友情链接列表
+		$links = $link->getAllCached();
+
+		return view('topics.index', compact('topics', 'active_users', 'links'));
 	}
 
     public function show(Request $request, Topic $topic)
